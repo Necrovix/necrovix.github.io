@@ -1,4 +1,4 @@
-# Zervion
+# Necrovix
 
 Open `index.html` in a browser (keep all files in one folder). No install, no API key.
 
