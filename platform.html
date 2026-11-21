@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zervion platform</title><link rel="icon" href="logo.svg"><link rel="stylesheet" href="style.css"></head><body>
+<nav id="nav"></nav>
+<div class="page"><h1>Platform</h1><p class="sub">Pick a reaction and catalyst, then explore the plant and optimise it.</p>
+<div class="plat"><div class="side">
+<label for="rx">Reaction</label><select id="rx"></select><label for="cat">Catalyst</label><select id="cat"></select>
+<label for="T">Temperature <span class="v" id="Tv"></span></label><input type="range" id="T"><label for="P">Pressure <span class="v" id="Pv"></span></label><input type="range" id="P">
+<label for="L">Catalyst loading <span class="v" id="Lv"></span></label><input type="range" id="L" min="0.5" max="3" step="0.1" value="1.5">
+<label for="cap">Plant size <span class="v" id="capv"></span></label><input type="range" id="cap" min="50" max="2000" step="50" value="500">
+<label for="h2">Hydrogen source</label><select id="h2"></select><label for="grid">Country grid</label><select id="grid"></select></div>
+<div><div class="tabs" role="tablist"><button class="on" data-t="t1">Discover</button><button data-t="t2">Plant</button><button data-t="t3">Optimise</button></div>
+<div class="tab on" id="t1"><h2 style="margin-top:0">Catalyst ranking</h2><p class="note" style="margin:0 0 8px">Ranked by profit at your conditions. Click a row to select it.</p>
+<table><thead><tr><th>Catalyst</th><th>Yield</th><th>Cost per tonne</th><th>Catalyst cost</th><th>Life</th><th>Supply risk</th></tr></thead><tbody id="rows"></tbody></table>
+<h2>Live data <span class="note" id="stamp"></span></h2><div class="grid2">
+<div class="card"><h3>Product properties <span class="pill" id="s1">…</span></h3><div id="d1" class="note">Loading…</div><p class="note">Source: PubChem (NIH)</p></div>
+<div class="card"><h3>Reaction energies (DFT) <span class="pill" id="s2">…</span></h3><div id="d2" class="note">Loading…</div><p class="note">Source: Catalysis-Hub.org</p></div>
+<div class="card"><h3>Recent papers <span class="pill" id="s3">…</span></h3><div id="d3" class="note">Loading…</div><p class="note">Source: OpenAlex</p></div></div></div>
+<div class="tab" id="t2"><h2 id="title" style="margin-top:0"></h2><div class="kpis" id="kpis"></div>
+<h2>Flowsheet</h2><svg viewBox="0 0 760 170" width="100%" role="img" aria-label="Plant flowsheet"><defs><marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b6773"/></marker></defs>
+<rect class="box" x="10" y="40" width="110" height="50" rx="8"/><text x="65" y="62" text-anchor="middle">Hydrogen feed</text><text id="f1" x="65" y="79" text-anchor="middle"></text>
+<rect class="box" x="170" y="40" width="110" height="50" rx="8"/><text x="225" y="62" text-anchor="middle">Compressor</text><text id="f2" x="225" y="79" text-anchor="middle"></text>
+<rect class="box react" x="330" y="40" width="120" height="50" rx="8"/><text x="390" y="62" text-anchor="middle">Reactor</text><text id="f3" x="390" y="79" text-anchor="middle"></text>
+<rect class="box" x="500" y="40" width="110" height="50" rx="8"/><text x="555" y="62" text-anchor="middle">Separator</text><text id="f4" x="555" y="79" text-anchor="middle"></text>
+<rect class="box" x="650" y="40" width="100" height="50" rx="8"/><text x="700" y="62" text-anchor="middle">Product</text><text id="f5" x="700" y="79" text-anchor="middle"></text>
+<path class="arrow" marker-end="url(#m)" d="M120 65H170M280 65H330M450 65H500M610 65H650"/><path class="arrow" marker-end="url(#m)" d="M555 90V140H225V90"/><text x="390" y="158" text-anchor="middle">Recycle of unreacted gas</text></svg>
+<h2>Cost per tonne</h2><div class="bar" id="bar"></div><div class="leg" id="leg"></div>
+<div class="grid2"><div><h2>Conversion against temperature</h2><canvas id="c1" width="640" height="230"></canvas></div><div><h2>Yield as the catalyst ages</h2><canvas id="c2" width="640" height="230"></canvas></div></div></div>
+<div class="tab" id="t3"><h2 style="margin-top:0">Optimise</h2><label for="obj">Goal</label><select id="obj"><option value="profit">Highest profit</option><option value="co2">Lowest CO₂</option><option value="yield">Highest yield</option></select>
+<p><button class="btn" id="opt">Find best setup</button> <button class="btn alt" id="save">Save as scenario</button></p><p class="note" id="optmsg"></p>
+<h2>Scenario comparison</h2><table><thead><tr><th>Setup</th><th>Yield</th><th>Cost per tonne</th><th>CO₂ per tonne</th><th>Profit per year</th></tr></thead><tbody id="scen"></tbody></table><p><button class="btn alt" id="clr">Clear</button></p></div>
+</div></div></div>
+<footer id="foot"></footer><script src="data.js"></script><script src="core.js"></script><script src="platform.js"></script><script src="fx.js"></script></body></html>
